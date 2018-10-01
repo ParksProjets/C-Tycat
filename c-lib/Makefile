@@ -4,7 +4,7 @@
 # Copyright (C) 2018, Guillaume Gonnet
 # This project is under the MIT License
 
-CC = clang
+CC = gcc
 AR = ar rcs
 CONFBUILDER = python3 builder/config/read-conf.py
 
@@ -51,7 +51,7 @@ lib: $(LIB_STATIC) $(LIB_DYNAMIC)
 
 $(OBJDIR)/%.o: $(SRCDIR)/$$(subst __,/,%).c $(CONFVALUES)
 	$(MKDIR)
-	$(CC) -o $@ -fPIC -g -c $(CFLAGS) $(LIBFLAGS) $<
+	$(CC) -o $@ -fPIC -c $(CFLAGS) $(LIBFLAGS) $<
 
 $(CONFVALUES): $(CONFIG)
 	$(CONFBUILDER) -o $@ $<
@@ -69,7 +69,7 @@ $(LIB_DYNAMIC): $(OBJECTS)
 
 # Compile a test
 $(TEST): $(OBJDIR)/tests/$(TESTOBJ).o $(LIB_STATIC)
-	$(CC) -o $@ $(CTYCMD) $^ -lm
+	$(CC) -o $@ -no-pie $(CTYCMD) $^ -lm
 
 $(OBJDIR)/tests/%.o: $(TESTDIR)/$$(subst __,/,%).c
 	$(MKDIR)

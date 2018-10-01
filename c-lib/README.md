@@ -55,6 +55,17 @@ support tycating structure members.
 because it's impossible to resolve types of rvalues.
 
 
+### I have the error `[302] Can't find scopes containing ...`
+
+**C-Tycat** doesn't work with position-independent code (because it cannot find
+DWARF information from PC due to [Address space layout randomization][aslr]).  
+Try recompiling your program with `-no-pie`.
+
+
 ### I have some multiple definitions when a compile
 
 Make sure that the linking command is **before** any object files.
+
+
+
+[aslr]: https://fr.wikipedia.org/wiki/Address_space_layout_randomization
