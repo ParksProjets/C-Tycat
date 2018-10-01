@@ -14,7 +14,7 @@ This project is under the MIT License
 // Print the name of a node.
 void _ctydot_nodename(void *data, int offset)
 {
-    fprintf(f, "s%x", (size_t)data);
+    fprintf(f, "s%lx", (size_t)data);
     int shift = offset >> 2;
 
     if (offset & 1)

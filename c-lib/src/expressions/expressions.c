@@ -44,20 +44,19 @@ void _ctyexp_error(int error)
 
 
 
+// Return true if a die is a qualifier.
+static inline int isqualifier(Dwarf_Die *d) {
+    int type = dwarf_tag(d);
+    return
+        type == DW_TAG_const_type    ||
+        type == DW_TAG_volatile_type ||
+        type == DW_TAG_restrict_type ||
+        type == DW_TAG_typedef;
+}
+
 // Adavnce the die to the type die.
 void _ctyexp_advance_to_type()
 {
-    // Inline for testing if a die is a qualifier.
-    inline int isqualifier(Dwarf_Die *d) {
-        int type = dwarf_tag(d);
-        return
-            type == DW_TAG_const_type    ||
-            type == DW_TAG_volatile_type ||
-            type == DW_TAG_restrict_type ||
-            type == DW_TAG_typedef;
-    }
-
-    // Move forward until we found a no qualifier die.
     Dwarf_Attribute attr;
     while (isqualifier(_ctyexp_data.die)) {
         dwarf_attr(_ctyexp_data.die, DW_AT_type, &attr);

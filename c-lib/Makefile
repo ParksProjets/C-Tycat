@@ -4,12 +4,13 @@
 # Copyright (C) 2018, Guillaume Gonnet
 # This project is under the MIT License
 
-CC = gcc
+CC = clang
 AR = ar rcs
 CONFBUILDER = python3 builder/config/read-conf.py
 
 CFLAGS = -std=gnu11 -Iinclude/
-CTYCMD = -Wl,--whole-archive -lctys -Wl,--no-whole-archive -ldw -lelf
+CFLAGS += -Wno-parentheses -Wno-return-type
+CTYCMD = -L. -Wl,--whole-archive -lctys -Wl,--no-whole-archive -ldw -lelf
 
 LIBFLAGS = -Iinclude/vendors -D_GNU_SOURCE -Wno-deprecated
 

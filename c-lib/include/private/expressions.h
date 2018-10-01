@@ -58,6 +58,9 @@ extern _Bool _ctyexp_has_error;
 int _ctycat_getdie(const char *fname, void *addr, const char *vname, Dwarf_Die *die);
 
 
+// Get the next token from the lexer.
+enum _Cty_ExpTokens _ctyexp_next();
+
 // Parse a C expression.
 void _ctyexp_parse(const char *expr);
 
@@ -76,6 +79,10 @@ void _ctyexp_dot_access();
 
 // Parse an arrow access (->) expression.
 void _ctyexp_arrow_access();
+
+
+// Find the variable tycated at a line.
+void _ctyexp_find_var();
 
 
 #endif  // _CTYCAT_EXPRESSIONS_H

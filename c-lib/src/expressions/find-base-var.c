@@ -37,10 +37,10 @@ static int get_cudie(const char *filename, Dwarf_Die *die)
 static int find_vardef(Dwarf_Die *cudie, void *addr, const char *vname,
     Dwarf_Die *vardie)
 {
-    Dwarf_Die *scopes;
+    Dwarf_Die *scopes = NULL;
 
     int len = dwarf_getscopes(cudie, (Dwarf_Addr)addr, &scopes);
-    if (len < 0)
+    if (len <= 0)
         return _CTY_ERR_DWARF(_CTY_ERR_FIND_SCOPES);
 
     int ret = dwarf_getscopevar(scopes, len, vname, 0, NULL, 0, 0, vardie);

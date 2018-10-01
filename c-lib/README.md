@@ -2,8 +2,7 @@
 
 This folder contains the C library of **C-Tycat**.
 
-Your project must be compiled with `-g` option for generating debug symbols.
-
+Your project must be compiled with `-g` option for generating debug symbols.  
 Beware that this library is **not thread safe**.
 
 

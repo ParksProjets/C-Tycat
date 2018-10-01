@@ -25,10 +25,10 @@ struct Container {
 int main()
 {
     double val = 42.1337;
-    // ctycat(val);
+    ctycat(val);
 
     char strz[] = "This is a string!";
-    // ctycat(strz);
+    ctycat(strz);
 
 
     struct Container c = {
@@ -40,10 +40,8 @@ int main()
 
     struct Container *ptr = &c;
 
-    // ctycat_config_set("max-inline-string", 20);
-
     printf("Size of structure : %lu\n", sizeof(struct Container));
-    // ctycat(ptr);
+    ctycat(ptr);
 
     ctycat(ptr->integer);
 }

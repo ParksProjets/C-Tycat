@@ -32,7 +32,7 @@ const char *_ctyexp_line;
 // Is the expression in parenthesis a type cast?
 static _Bool _ctyexp_is_cast()
 {
-    char *curs = pos;
+    const char *curs = pos;
     while (*curs != ')' && *curs != '\0')
         curs++;
 
@@ -50,7 +50,7 @@ static _Bool _ctyexp_is_cast()
 // Parse a word.
 static void parse_word()
 {
-    char *start = pos - 1;
+    const char *start = pos - 1;
     while (isalnum(*pos) || *pos == '_')
         pos++;
 

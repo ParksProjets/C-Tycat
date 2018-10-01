@@ -1,0 +1,17 @@
+# Ignore generated config.
+/include/private/config-values.h
+
+# Ignore generated libs.
+/libctyd.so
+/libctys.a
+
+# Ignore generated tycats
+/ctycat-*.dot
+/ctycat-*.png
+
+# Ignore all tests.
+/basic-types
+/linked-list
+/doubly-linked-list
+/malloc-scan
+/vector

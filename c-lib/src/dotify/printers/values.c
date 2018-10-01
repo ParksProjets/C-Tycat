@@ -3,7 +3,7 @@
 Some useful functons for printing node value. 
 
 Copyright (C) 2018, Guillaume Gonnet
-This project is under the GPLv2
+This project is under the MIT License
 
 */
 
@@ -159,7 +159,7 @@ static void _ctydot_fvalue(_Cty_Die *die, void *data)
         case DW_ATE_complex_float:
             print_complex(size / 2, data); break;
         default:
-            printf("Unknown ATE: %d\n", encoding);
+            printf("Unknown ATE: %ld\n", encoding);
     }
 }
 

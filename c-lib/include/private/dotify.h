@@ -77,7 +77,7 @@ KHASH_SET_INIT_ADDR(_addr)
 
 
 // Print the label of the node
-#define node_label(data) fprintf(f, "s%x ", (size_t)data);
+#define node_label(data) fprintf(f, "s%lx ", (size_t)data);
 
 
 
