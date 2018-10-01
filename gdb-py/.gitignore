@@ -1,0 +1,3 @@
+# Ignore generate files
+/lab
+/test.dot*

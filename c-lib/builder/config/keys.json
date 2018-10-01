@@ -1,0 +1,25 @@
+{
+    "boolean": [
+        "enable-meminfo",
+        "safe-memory-check",
+        "enable-malloc-scan",
+        "gdb-extension",
+        "gdb-extension-inline",
+        "enable-analyse",
+        "malloced-arrays",
+        "save-dot",
+        "save-png"
+    ],
+    "integer": [
+        "chunk-size",
+        "max-array-size",
+        "max-inline-string",
+        "max-string"
+    ],
+    "string": [
+        "dot-name",
+        "png-name",
+        "text-font",
+        "rankdir"
+    ]
+}
