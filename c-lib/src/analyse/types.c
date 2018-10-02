@@ -11,7 +11,6 @@ This project is under the MIT License
 #include "private/ctycat.h"
 
 
-
 // Return true if a die is a qualifier.
 static inline int isqualifier(Dwarf_Die *d) {
     int type = dwarf_tag(d);

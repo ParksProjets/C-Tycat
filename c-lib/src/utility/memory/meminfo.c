@@ -47,7 +47,7 @@ struct hdr {
 
 
 // Extra size to request to the malloc function.
-#define EXTRA sizeof(struct hdr) + 1
+#define EXTRA (sizeof(struct hdr) + 1)
 
 // Magic numbers
 #define MAGICWORD  0xA38FB83C
@@ -61,7 +61,6 @@ struct hdr {
 
 // Is a ptr (not hdr) mis-aligned?
 #define is_misaligned(ptr) (((uintptr_t)(ptr)) & MALLOC_ALIGN_MASK)
-
 
 
 
@@ -80,7 +79,6 @@ static void freehook(void *ptr, const void *caller)
 
     __free_hook = freehook;
 }
-
 
 
 
@@ -119,7 +117,6 @@ static void *memalignhook(size_t alignment, size_t size, const void *caller)
 
 
 
-
 // Hook for the malloc function.
 static void *mallochook(size_t size, const void *caller)
 {
@@ -148,7 +145,6 @@ static void *mallochook(size_t size, const void *caller)
 
 
 
-
 // Hook for the realloc function.
 static void *reallochook(void *ptr, size_t size, const void *caller)
 {
@@ -156,6 +152,9 @@ static void *reallochook(void *ptr, size_t size, const void *caller)
 
     __malloc_hook = old_malloc_hook;
     __realloc_hook = old_realloc_hook;
+
+    if (ptr != NULL)
+        ptr = ptr2hdr(ptr);
 
     if (__builtin_expect(old_realloc_hook != NULL, 0))
         hdr = (*old_realloc_hook)(ptr, EXTRA + size, caller);
@@ -168,8 +167,13 @@ static void *reallochook(void *ptr, size_t size, const void *caller)
     if (hdr == NULL) return NULL;
 
     hdr->size = size;
-}
+#if _CTYCONF_SAFE_MEMORY_CHECK
+    hdr->address = size ^ MAGICWORD2;
+#endif
 
+    *((char *)(hdr + 1) + size) = MAGICEND;
+    return hdr + 1;
+}
 
 
 
@@ -202,7 +206,6 @@ size_t _ctycat_malloced_size(void *ptr)
 
     return ptr2hdr(ptr)->size;
 }
-
 
 
 

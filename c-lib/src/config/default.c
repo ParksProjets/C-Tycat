@@ -47,9 +47,8 @@ static void setstr(const char *key, char *value, char **storage)
 
 
 
-
-// Unload configuration
-__attribute__((destructor)) static void unload_config()
+// Unload C-Tycat configuration.
+void _ctycat_unload_config()
 {
     khiter_t k = kh_begin(map);
 
@@ -63,9 +62,8 @@ __attribute__((destructor)) static void unload_config()
 
 
 
-
-// Load default ctycat configuration.
-__attribute__((constructor)) static void load_config()
+// Load default C-Tycat configuration.
+void _ctycat_load_default_config()
 {
     _ctycat_confmap = kh_init(_conf);
 

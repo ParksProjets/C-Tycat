@@ -8,9 +8,10 @@ This project is under the MIT License
 */
 
 #include "private/utility.h"
-#include "private/config.h"
 #include "private/ctycat.h"
 #include "private/dotify.h"
+#include "private/errors.h"
+#include "private/config.h"
 
 #include <string.h>
 #include <unistd.h>
@@ -20,8 +21,12 @@ This project is under the MIT License
 // Get the DOT name from the temp dir.
 static const char *dot_temp()
 {
-    static char dotname[] = "/tmp/ctycatXXXXXX.dot";
+    static char dotname[25];
+    strcpy(dotname, "/tmp/ctycatXXXXXX.dot");
+
     int fd = mkstemps(dotname, 4);
+    if (fd == -1)
+        return (_ctycat_report_error(_CTY_ERR_ERRNO(_CTY_ERR_OPEN_DOT)), NULL);
 
     f = fdopen(fd, "w");
     return dotname;
@@ -55,7 +60,6 @@ const char *_ctycat_open_dot()
     else
         return dot_temp();
 }
-
 
 
 

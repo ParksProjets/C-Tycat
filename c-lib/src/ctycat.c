@@ -23,7 +23,7 @@ int _ctycat_number;
 // Raw function for C tycat
 void _ctycat(const char *fname, int line, void *addr, const char *vname, void *data)
 {
-    if (_ctycat_init())
+    if (_ctycat_init_dward())
         return; // An error has occured.
 
     Dwarf_Die typedie;
@@ -40,14 +40,12 @@ void _ctycat(const char *fname, int line, void *addr, const char *vname, void *d
 
 
 
-
-// Uninitialize C-Tycat
-__attribute__((destructor)) static void _ctycat_uninit()
+// Uninitialize C-Tycat.
+void _ctycat_uninit()
 {
-    if (_ctycat_initialized) {
-        dwfl_end(_ctycat_dwfl);
-        kh_destroy(_cuhash, _ctycat_cumap);
-    }
+    if (!_ctycat_initialized)
+        return;
 
-    printf("Unitialized!\n");
+    dwfl_end(_ctycat_dwfl);
+    kh_destroy(_cuhash, _ctycat_cumap);
 }

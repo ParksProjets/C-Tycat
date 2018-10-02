@@ -28,7 +28,7 @@ int main()
     ctycat(val);
 
     char strz[] = "This is a string!";
-    ctycat(strz);
+    // ctycat(strz);
 
 
     struct Container c = {
@@ -43,5 +43,5 @@ int main()
     printf("Size of structure : %lu\n", sizeof(struct Container));
     ctycat(ptr);
 
-    ctycat(ptr->integer);
+    // ctycat(ptr->integer);
 }

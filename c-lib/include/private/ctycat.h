@@ -38,8 +38,11 @@ extern int _ctycat_number;
 
 
 
-// Initialize C-Tycat.
-int _ctycat_init();
+// Initialize Dwarf module used by C-Tycat.
+int _ctycat_init_dward();
+
+// Uninitialize C-Tycat.
+void _ctycat_uninit();
 
 // Convert the data into a .dot file.
 void _ctycat_dotify(Dwarf_Die *typedie, void *data, const char *vname);

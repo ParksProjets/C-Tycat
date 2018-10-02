@@ -91,7 +91,6 @@ static enum _Cty_ConfTokens parse_word()
 
 
 
-
 // Get the next token from the lexer.
 enum _Cty_ConfTokens _ctyconf_next()
 {

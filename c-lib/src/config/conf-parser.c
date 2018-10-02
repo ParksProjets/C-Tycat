@@ -47,7 +47,6 @@ static void set_parameter(enum _Cty_ConfTokens type)
 
 
 
-
 // Expect a token to be parsed and update the look-ahead.
 static void expect(int tokens)
 {

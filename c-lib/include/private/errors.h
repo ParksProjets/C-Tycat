@@ -11,6 +11,7 @@ This project is under the MIT License
 #define _CTYCAT_ERRORS_H
 
 #include <elfutils/libdw.h>
+#include <errno.h>
 
 
 // All error types.
@@ -22,6 +23,7 @@ enum _Ctycat_Errors {
     _CTY_ERR_LOAD_DWARF = 102,
 
     _CTY_ERR_LOAD_CUDIES = 201,
+    _CTY_ERR_OPEN_DOT = 202,
 
     _CTY_ERR_FIND_CU = 301,
     _CTY_ERR_FIND_SCOPES = 302,
@@ -45,6 +47,9 @@ enum _Ctycat_Warnings {
 // Add Libdw error on top of C-Tycat error.
 #define _CTY_ERR_DWARF(err) (err | (dwarf_errno() << 16))
 
+// Add errno on top of C-Tycat error.
+#define _CTY_ERR_ERRNO(err) (err | (errno << 16))
+
 
 
 // Location information.
@@ -63,11 +68,16 @@ void _ctycat_error_info(const char *text);
 
 // Shortname macros
 #define _dwarf(msg) _ctycat_add_error_dwarf(error, msg)
-#define _loc(msg) _ctycat_add_error_location(msg)
+#define _errno(msg) _ctycat_add_error_errno(error, msg)
 #define _info(msg) _ctycat_add_error_info(msg)
+#define _loc(msg) _ctycat_add_error_location(msg)
 
-// Add DWARF error on top the current error text.
+
+// Add DWARF error on top of the current error text.
 const char *_ctycat_add_error_dwarf(int error, const char *basetext);
+
+// Add errno error on top of the current error text.
+const char *_ctycat_add_error_errno(int error, const char *basetext);
 
 // Add location on top the current error text.
 const char *_ctycat_add_error_location(const char *basetext);

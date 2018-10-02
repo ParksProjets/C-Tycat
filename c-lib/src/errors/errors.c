@@ -33,6 +33,8 @@ const char *_ctycat_error_text(int error)
 
         case _CTY_ERR_LOAD_CUDIES:
             return _dwarf("Can't get a CU die");
+        case _CTY_ERR_OPEN_DOT:
+            return _errno("Can't open DOT file");
 
         case _CTY_ERR_FIND_CU:
             return _loc("Can't find CU for %s, ensure you used -g");

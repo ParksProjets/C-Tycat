@@ -88,7 +88,6 @@ void _ctycat_dotify_analysed()
 
 
 
-
 // Add the first node and edge for variable entry
 void _ctydot_entry(Dwarf_Die *die, void *data, const char *vname)
 {
@@ -104,7 +103,6 @@ void _ctydot_entry(Dwarf_Die *die, void *data, const char *vname)
 
     fputs(" [color=\"red2\", dir=none]\n\n", f);
 }
-
 
 
 
@@ -125,11 +123,11 @@ void _ctycat_dotify_entry(Dwarf_Die *die, void *data, const char *vname)
 
 
 
-
 // Convert the data into a .dot file.
 void _ctycat_dotify(Dwarf_Die *typedie, void *data, const char *vname)
 {
     const char *dotname = _ctycat_open_dot();
+    if (!dotname) return;
 
     _ctycat_dotify_entry(typedie, data, vname);
     fclose(f);

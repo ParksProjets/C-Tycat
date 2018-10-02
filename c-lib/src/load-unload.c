@@ -9,6 +9,7 @@ This project is under the MIT License
 
 #include "ctycat.h"
 #include "private/ctycat.h"
+#include "private/config.h"
 #include "private/errors.h"
 
 #include <stdio.h>
@@ -18,14 +19,16 @@ This project is under the MIT License
 // Load C-Tycat.
 __attribute__((constructor)) static void _ctycat_load()
 {
-   // TO DO.
+   _ctycat_load_default_config();
 }
-
 
 
 
 // Unload C-Tycat.
 __attribute__((destructor)) static void _ctycat_unload()
 {
-    // TODO.
+    _ctycat_uninit();
+    _ctycat_unload_config();
+
+    printf("C-Tycat Unitialized!\n");
 }

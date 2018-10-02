@@ -73,6 +73,13 @@ void _ctyconf_error(const char *msg, ...);
 void _ctyconf_error_token(enum _Cty_ConfTokens token);
 
 
+// Load default ctycat configuration.
+void _ctycat_load_default_config();
+
+// Unload C-Tycat configuration.
+void _ctycat_unload_config();
+
+
 
 // All configuration parameters.
 struct _Config {

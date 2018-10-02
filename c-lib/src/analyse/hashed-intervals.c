@@ -11,7 +11,6 @@ This project is under the MIT License
 #include "private/analyse.h"
 
 
-
 // Hash map containing chunks
 khash_t(_chunks) *_ctycat_chunks;
 
@@ -39,7 +38,6 @@ struct _Interval *_ctycat_get_interval(uintptr_t addr)
 
     return NULL;
 }
-
 
 
 

@@ -1,6 +1,6 @@
 /*
 
-Initialize C-Tycat.
+Initialize Dwarf module used by C-Tycat.
 
 Copyright (C) 2018, Guillaume Gonnet
 This project is under the MIT License
@@ -39,7 +39,6 @@ Dwfl *_ctycat_dwfl;
 
 // Hashmap of CU dies
 khash_t(_cuhash) *_ctycat_cumap;
-
 
 
 
@@ -84,7 +83,6 @@ error:
 
 
 
-
 // Load all CU dies into the hash map.
 static int _ctycat_load_cudies()
 {
@@ -110,9 +108,8 @@ static int _ctycat_load_cudies()
 
 
 
-
-// Initialize CTycat
-int _ctycat_init()
+// Initialize Dwarf module used by C-Tycat.
+int _ctycat_init_dward()
 {
     int ret;
 
