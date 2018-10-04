@@ -19,12 +19,17 @@ This project is under the MIT License
 // Is the parsing error reported?
 _Bool _ctyconf_error_reported;
 
+// Terminal colors.
+#define TTY_RESET "\033[0m"
+#define TTY_BOLD "\033[1m"
+#define TTY_MAGENTA "\033[35m"
+
 
 
 // Print the error position.
 static void print_pos()
 {
-    fprintf(stderr, "\n    %s\n    ", _ctyconf_line);
+    fprintf(stderr, TTY_MAGENTA "\n    %s\n    ", _ctyconf_line);
 
     char *p = _ctyconf_line;
     for (; p < _ctyconf_lastp; p++)
@@ -49,13 +54,13 @@ void _ctyconf_error(const char *msg, ...)
     va_list argp;
     va_start(argp, msg);
 
-    fprintf(stderr, "  line %d: ", _ctyconf_lineno);
+    fprintf(stderr, TTY_BOLD "  line %d: " TTY_RESET, _ctyconf_lineno);
     vfprintf(stderr, msg, argp);
 
     if (_ctyconf_lastp < _ctyconf_linep)
         print_pos();
 
-    fprintf(stderr, "\n\n");
+    fprintf(stderr, TTY_RESET "\n\n");
     va_end(argp);
 
     longjmp(_ctyconf_jmp, 1);

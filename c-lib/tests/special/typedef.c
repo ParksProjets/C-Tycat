@@ -47,6 +47,5 @@ int main()
 
     c.c = 'A';
 
-
     ctycat(a);
 }

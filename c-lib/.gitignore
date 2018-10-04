@@ -15,3 +15,5 @@
 /doubly-linked-list
 /malloc-scan
 /vector
+/special.*
+/config.file

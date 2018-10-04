@@ -60,16 +60,15 @@ const char *_ctycat_error_text(int error)
 
 
 
-// Error colors
-#define _CTYCOL_RESET "\033[0m"
-#define _CTYCOL_BOLD "\033[1m"
-#define _CTYCOL_BOLDMAGENTA _CTYCOL_BOLD "\033[35m\033[95m"
-#define _CTYCOL_BOLDRED _CTYCOL_BOLD "\033[31m\033[91m"
-#define _CTYCOL_RED _CTYCOL_RESET "\033[31m"
+// Terminal colors.
+#define TTY_RESET "\033[0m"
+#define TTY_BOLD "\033[1m"
+#define TTY_RED "\033[31m"
+#define TTY_MAGENTA "\033[35m"
 
-// Print and format an error
-#define _ctycat_errf(msg, ...) fprintf(stderr, _CTYCOL_BOLDMAGENTA "!! " \
-    _CTYCOL_RESET msg _CTYCOL_RESET "\n", ## __VA_ARGS__)
+// Print and format an error.
+#define _ctycat_errf(msg, ...) fprintf(stderr, TTY_BOLD TTY_MAGENTA "!! " \
+    TTY_RESET msg TTY_RESET "\n", ## __VA_ARGS__)
 
 
 // Report an error
@@ -83,8 +82,8 @@ int _ctycat_report_error(int error)
     const char *strz = _ctycat_error_text(error);
 
     fprintf(stderr, "\n");
-    _ctycat_errf(_CTYCOL_BOLDRED "ctycat: an error has occurred");
-    _ctycat_errf(_CTYCOL_RED "  [" _CTYCOL_BOLD "%d" _CTYCOL_RED "] %s\n",
+    _ctycat_errf(TTY_BOLD TTY_RED "ctycat: an error has occurred" TTY_RESET);
+    _ctycat_errf(TTY_RED "  [" TTY_BOLD "%d" TTY_RESET TTY_RED "] %s\n",
         error & 0xFFFF, strz);
 
     return _CTY_FATAL_ERROR;

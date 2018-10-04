@@ -41,9 +41,9 @@ static void parse_string()
         pos++;
 
     if (*pos != '"')
-        _ctyconf_error("Unexpected end of string");
+        _ctyconf_error("unexpected end of string");
     if (pos - start >= 50)
-        _ctyconf_error("String to long (more than 50 chars)");
+        _ctyconf_error("string to long (more than 50 chars)");
 
     strncpy(_ctyconf_string, start, pos - start);
     _ctyconf_string[pos - start] = '\0';
@@ -81,7 +81,7 @@ static enum _Cty_ConfTokens parse_word()
     }
 
     if (pos - start >= 40)
-        _ctyconf_error("Word to long (more than 40 chars)");
+        _ctyconf_error("word to long (more than 40 chars)");
 
     strncpy(_ctyconf_word, start, pos - start);
     _ctyconf_word[pos - start] = '\0';
@@ -111,5 +111,5 @@ enum _Cty_ConfTokens _ctyconf_next()
     if (isalpha(*last))
         return parse_word();
 
-    _ctyconf_error("Unexpected character '%c'", *last);
+    _ctyconf_error("unexpected character '%c'", *last);
 }
